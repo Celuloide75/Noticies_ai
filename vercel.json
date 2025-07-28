@@ -1,0 +1,4 @@
+{
+  "version": 2,
+  "builds": [{ "src": "api/noticia.js", "use": "@vercel/node" }]
+}
