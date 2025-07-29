@@ -1,18 +1,40 @@
+
+import fetch from 'node-fetch';
+import { JSDOM } from 'jsdom';
+import OpenAI from "openai";
+
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+
 export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Only POST requests allowed" });
+  }
+
+  const { url, titol } = req.body;
+
   try {
-    const { url, titol } = req.body;
+    const response = await fetch(url);
+    const html = await response.text();
+    const dom = new JSDOM(html);
+    const textContent = dom.window.document.body.textContent;
 
-    console.log("🔗 Rebuda URL:", url);
-    console.log("📝 Rebuda Títol:", titol);
+    const prompt = `Resumeix aquesta notícia en català: \n\n${textContent}`;
 
-    // Retorn provisional per verificar que tot arriba bé
+    const completion = await openai.chat.completions.create({
+      messages: [{ role: "user", content: prompt }],
+      model: "gpt-3.5-turbo",
+    });
+
+    const resum = completion.choices[0].message.content;
+
     res.status(200).json({
-      missatge: "✅ Dades rebudes al servidor!",
-      urlRebuda: url,
-      titolRebut: titol
+      missatge: "✅ Resum generat correctament!",
+      titol: titol || "",
+      url,
+      resum,
     });
   } catch (error) {
-    console.error("❌ Error intern al servidor:", error);
-    res.status(500).json({ error: "Error al processar la petició" });
+    console.error("❌ Error processant la notícia:", error);
+    res.status(500).json({ error: "No s'ha pogut generar el resum", details: error.message });
   }
 }
