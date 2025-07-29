@@ -1,5 +1,11 @@
 [
-  { "titol": "Exemple de notícia",
+  {
+    "titol": "Notícia sense títol",
+    "resum": "En aquesta notícia, Gianluca Fiorelli entrevista a Giorgio Taverniti, un expert en SEO italià, on parlen sobre el concepte de \"cerca líquida\" i com és important adaptar-se als canvis d'algorismes d'IA com Google. També destaquen la importància de l'educació contínua en el sector de l'SEO i com pot ajudar a les empreses a mantenir-se al dia i a prendre decisions informades. Finalment, Taverniti parla de la seva passió pel teatre i com aquesta activitat l'ajuda a connectar amb la gent d'una manera més autèntica.",
+    "url": "https://substack.com/redirect/a326bd4c-5334-4aae-9ac0-e7b6736d5f34?j=eyJ1IjoiMW91dTgxIn0.KBFX2lY8UuKv7N9saG2sajwRFh1BhK48OyyDUUU75NQ"
+  },
+  {
+    "titol": "Exemple de notícia",
     "resum": "Aquest és un resum fictici de prova generat pel bot.",
     "url": "https://exemple.com/noticia"
   }

@@ -1,0 +1,14 @@
+{
+  "name": "noticies-telegram-bot",
+  "version": "1.0.0",
+  "description": "Bot de Telegram que envia URLs al resumidor",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "node-fetch": "^2.6.9",
+    "node-telegram-bot-api": "^0.61.0"
+  }
+}
