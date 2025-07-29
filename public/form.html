@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Afegir notícia amb resum</title>
+</head>
+<body style="font-family: sans-serif; max-width: 500px; margin: 40px auto; padding: 20px;">
+  <h2>Enviar notícia per resumir</h2>
+  <label>Títol (opcional):</label><br>
+  <input type="text" id="title" style="width: 100%; padding: 8px; margin: 10px 0;"><br>
+
+  <label>URL de la notícia:</label><br>
+  <input type="url" id="url" placeholder="https://..." style="width: 100%; padding: 8px; margin: 10px 0;"><br>
+
+  <button onclick="enviar()" style="padding: 10px 20px; font-size: 16px;">Enviar</button>
+
+  <p id="resposta" style="margin-top: 20px;"></p>
+
+  <script>
+    async function enviar() {
+      const title = document.getElementById('title').value;
+      const url = document.getElementById('url').value;
+      const resposta = document.getElementById('resposta');
+      resposta.textContent = 'Enviant notícia...';
+
+      try {
+        const res = await fetch('https://noticies-ai.vercel.app/api/noticia', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ title, url })
+        });
+
+        if (!res.ok) throw new Error('Error al servidor');
+
+        const data = await res.json();
+        resposta.innerHTML = `<strong>Resum:</strong><br>${data.resum}`;
+      } catch (err) {
+        resposta.textContent = '❌ Error: ' + err.message;
+      }
+    }
+  </script>
+</body>
+</html>
