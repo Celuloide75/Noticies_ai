@@ -1,6 +1,5 @@
 [
-  {
-    "titol": "Exemple de notícia",
+  { "titol": "Exemple de notícia",
     "resum": "Aquest és un resum fictici de prova generat pel bot.",
     "url": "https://exemple.com/noticia"
   }
