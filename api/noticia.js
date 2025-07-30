@@ -1,40 +1,51 @@
-
-import fetch from 'node-fetch';
-import { JSDOM } from 'jsdom';
-import OpenAI from "openai";
+import { NextApiRequest, NextApiResponse } from "next";
+import { OpenAI } from "openai";
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-export default async function handler(req, res) {
-  if (req.method !== "POST") {
-    return res.status(405).json({ error: "Only POST requests allowed" });
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const { url } = req.body;
+
+  if (!url) {
+    return res.status(400).json({ error: "Falta la URL" });
   }
 
-  const { url, titol } = req.body;
-
   try {
-    const response = await fetch(url);
-    const html = await response.text();
-    const dom = new JSDOM(html);
-    const textContent = dom.window.document.body.textContent;
-
-    const prompt = `Resumeix aquesta notícia en català: \n\n${textContent}`;
-
     const completion = await openai.chat.completions.create({
-      messages: [{ role: "user", content: prompt }],
-      model: "gpt-3.5-turbo",
+      model: "gpt-4o", // O "gpt-3.5-turbo" si vols estalviar crèdit
+      messages: [
+        {
+          role: "system",
+          content: "Ets un assistent que resumeix notícies i les categoritza en format JSON."
+        },
+        {
+          role: "user",
+          content: `Llegeix la notícia d'aquesta URL: ${url}.
+
+Resumeix la notícia en un màxim de 3 frases i categoritza-la segons aquesta llista:
+
+["Cultura", "Esports", "Guitarra", "Musica", "Art", "Cinema", "Tecnologia", "IA"]
+
+Torna la resposta en format JSON amb aquest esquema:
+
+{
+  "resum": "...",
+  "categories": ["...", "..."]
+}`
+        }
+      ],
+      temperature: 0.4
     });
 
-    const resum = completion.choices[0].message.content;
+    const resposta = completion.choices[0].message?.content;
 
-    res.status(200).json({
-      missatge: "✅ Resum generat correctament!",
-      titol: titol || "",
-      url,
-      resum,
+    const parsed = JSON.parse(resposta ?? "");
+
+    return res.status(200).json(parsed);
+  } catch (error: any) {
+    return res.status(500).json({
+      error: "Error processant la resposta d'OpenAI",
+      detalls: error.message ?? error.toString()
     });
-  } catch (error) {
-    console.error("❌ Error processant la notícia:", error);
-    res.status(500).json({ error: "No s'ha pogut generar el resum", details: error.message });
   }
 }
