@@ -8,5 +8,11 @@
     "titol": "Exemple de notícia",
     "resum": "Aquest és un resum fictici de prova generat pel bot.",
     "url": "https://exemple.com/noticia"
+  },
+  {
+    "titol": "",
+    "url": "https://www.rac1.cat/participacio/20250729/278158/mai-sentit-tan-mal-ates-denigrat-no-cert-tinguis-tracte-preferent-sanitat-publica-nouvingut.html",
+    "resum": "Un noi colombià denuncia la seva mala experiència a l'Hospital General de Vic, on va haver d'esperar 11 hores per ser atès i li van negar fins i tot un got d'aigua. Aquesta situació lamentable demostra que, malauradament, no existeix un tracte preferencial a la sanitat pública per als nouvinguts.",
+    "data": "2025-07-30T09:19:29.730Z"
   }
 ]
