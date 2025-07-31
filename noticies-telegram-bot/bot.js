@@ -1,4 +1,3 @@
-
 require('dotenv').config();
 const fs = require('fs');
 const path = require('path');
@@ -11,10 +10,10 @@ const bot = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN, { polling: true });
 const allowedUserId = 411542252;
 
 // Ruta on es guardarà el fitxer resums.json
-const RESUMS_PATH = path.join(__dirname, '../public/resums.json');
+const RESUMS_PATH = path.join(__dirname, '../web-tailwind/public/resums.json');
 
 bot.on('message', async (msg) => {
-   console.log("👉 ID usuari:", msg.from.id);
+  console.log("👉 ID usuari:", msg.from.id);
   const chatId = msg.chat.id;
   const text = msg.text;
 
@@ -36,13 +35,20 @@ bot.on('message', async (msg) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ url })
       });
+
+      if (!res.ok) {
+        const errorText = await res.text();
+        throw new Error(`Error del servidor (${res.status}): ${errorText}`);
+      }
+
       const data = await res.json();
 
       // Construir nova notícia
       const novaNoticia = {
         titol: data.titol || "Notícia sense títol",
         resum: data.resum || "Sense resum disponible.",
-        url: url
+        url: url,
+        categories: data.categories || ["Sense categoria"]
       };
 
       // Llegir fitxer actual
@@ -52,14 +58,21 @@ bot.on('message', async (msg) => {
         noticies = JSON.parse(raw);
       }
 
+      // Evitar duplicats
+      const jaExisteix = noticies.some(n => n.url === url);
+      if (jaExisteix) {
+        bot.sendMessage(chatId, "⚠️ Aquesta notícia ja s'ha afegit prèviament.");
+        return;
+      }
+
       // Afegir nova notícia i guardar
       noticies.unshift(novaNoticia); // afegir al principi
       fs.writeFileSync(RESUMS_PATH, JSON.stringify(noticies, null, 2));
 
       bot.sendMessage(chatId, '✅ Notícia resumida i afegida a la web!');
     } catch (err) {
-      console.error(err);
-      bot.sendMessage(chatId, '❌ Error generant o desant el resum.');
+      console.error("❌ ERROR DETALLAT:", err.message);
+      bot.sendMessage(chatId, `❌ Error generant el resum: ${err.message}`);
     }
   } else {
     bot.sendMessage(chatId, "⚠️ No s'ha detectat cap URL al missatge.");
