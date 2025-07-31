@@ -10,7 +10,7 @@ interface Noticia {
 
 function App() {
   const [noticies, setNoticies] = useState<Noticia[]>([]);
-  const [filtre, setFiltre] = useState<string>("Totes");
+  const [eliminades, setEliminades] = useState<string[]>([]);
 
   useEffect(() => {
     fetch("/resums.json")
@@ -21,30 +21,40 @@ function App() {
 
   const categoriesDisponibles = Array.from(new Set(noticies.flatMap(n => n.categories)));
 
-  const noticiesFiltrades = filtre === "Totes"
-    ? noticies
-    : noticies.filter(n => n.categories.includes(filtre));
+  const filtraNoEliminades = (noticies: Noticia[]) =>
+    noticies.filter((n) => !eliminades.includes(n.url));
+
+  const handleElimina = (url: string) => {
+    setEliminades([...eliminades, url]);
+  };
 
   return (
-    <main className="max-w-3xl mx-auto p-6">
+    <main className="max-w-5xl mx-auto p-6">
       <h1 className="text-3xl font-bold mb-6">Resums de notícies</h1>
 
-      <div className="mb-6">
-        <label className="block mb-2 text-sm font-medium text-gray-700">Filtra per categoria:</label>
-        <select
-          className="p-2 border rounded"
-          value={filtre}
-          onChange={(e) => setFiltre(e.target.value)}
-        >
-          <option value="Totes">Totes</option>
-          {categoriesDisponibles.map((cat) => (
-            <option key={cat} value={cat}>{cat}</option>
-          ))}
-        </select>
-      </div>
+      <nav className="flex flex-wrap gap-2 mb-6">
+        {categoriesDisponibles.map((cat) => (
+          <a
+            key={cat}
+            href={`#cat-${cat}`}
+            className="bg-blue-100 text-blue-800 px-3 py-1 rounded hover:bg-blue-200"
+          >
+            {cat}
+          </a>
+        ))}
+      </nav>
 
-      {noticiesFiltrades.map((n, i) => (
-        <NoticiaCard key={i} noticia={n} />
+      {categoriesDisponibles.map((cat) => (
+        <section key={cat} id={`cat-${cat}`} className="mb-10">
+          <h2 className="text-2xl font-semibold mb-4">📂 {cat}</h2>
+          {filtraNoEliminades(noticies.filter(n => n.categories.includes(cat))).length > 0 ? (
+            filtraNoEliminades(noticies.filter(n => n.categories.includes(cat))).map((n, i) => (
+              <NoticiaCard key={i} noticia={n} onElimina={handleElimina} />
+            ))
+          ) : (
+            <p className="text-gray-500">No hi ha notícies disponibles en aquesta categoria.</p>
+          )}
+        </section>
       ))}
     </main>
   );

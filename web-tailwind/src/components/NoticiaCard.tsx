@@ -5,10 +5,11 @@ interface Props {
     url: string;
     categories: string[];
   };
+  onElimina?: (url: string) => void;
 }
 
-const NoticiaCard = ({ noticia }: Props) => (
-  <div className="bg-white border border-gray-300 rounded p-4 mb-4 shadow">
+const NoticiaCard = ({ noticia, onElimina }: Props) => (
+  <div className="bg-white border border-gray-300 rounded p-4 mb-4 shadow relative">
     <h2 className="text-xl font-semibold mb-2">{noticia.titol}</h2>
     <p className="mb-2">{noticia.resum}</p>
     <a
@@ -19,6 +20,14 @@ const NoticiaCard = ({ noticia }: Props) => (
     >
       🔗 Llegir notícia
     </a>
+    {onElimina && (
+      <button
+        onClick={() => onElimina(noticia.url)}
+        className="absolute top-2 right-2 text-red-600 hover:text-red-800"
+      >
+        ✖
+      </button>
+    )}
   </div>
 );
 
