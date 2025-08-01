@@ -5,12 +5,8 @@ const TelegramBot = require('node-telegram-bot-api');
 const fetch = require('node-fetch');
 
 const bot = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN, { polling: true });
-
-// Substitueix pel teu ID
 const allowedUserId = 411542252;
-
-// Ruta on es guardarà el fitxer resums.json
-const RESUMS_PATH = path.join(__dirname, '../web-tailwind/public/resums.json');
+const RESUMS_PATH = path.join(__dirname, '../public/resums.json');
 
 bot.on('message', async (msg) => {
   console.log("👉 ID usuari:", msg.from.id);
@@ -36,43 +32,37 @@ bot.on('message', async (msg) => {
         body: JSON.stringify({ url })
       });
 
-      if (!res.ok) {
-        const errorText = await res.text();
-        throw new Error(`Error del servidor (${res.status}): ${errorText}`);
+      const text = await res.text();
+
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch (err) {
+        throw new Error(`Resposta no és JSON vàlid: ${text}`);
       }
 
-      const data = await res.json();
+      if (!data.resum || !data.titol) {
+        throw new Error("Resposta JSON sense resum o títol.");
+      }
 
-      // Construir nova notícia
       const novaNoticia = {
-        titol: data.titol || "Notícia sense títol",
-        resum: data.resum || "Sense resum disponible.",
-        url: url,
-        categories: data.categories || ["Sense categoria"]
+        titol: data.titol,
+        resum: data.resum,
+        url: url
       };
 
-      // Llegir fitxer actual
       let noticies = [];
       if (fs.existsSync(RESUMS_PATH)) {
         const raw = fs.readFileSync(RESUMS_PATH);
         noticies = JSON.parse(raw);
       }
 
-      // Evitar duplicats
-      const jaExisteix = noticies.some(n => n.url === url);
-      if (jaExisteix) {
-        bot.sendMessage(chatId, "⚠️ Aquesta notícia ja s'ha afegit prèviament.");
-        return;
-      }
-
-      // Afegir nova notícia i guardar
-      noticies.unshift(novaNoticia); // afegir al principi
+      noticies.unshift(novaNoticia);
       fs.writeFileSync(RESUMS_PATH, JSON.stringify(noticies, null, 2));
-
       bot.sendMessage(chatId, '✅ Notícia resumida i afegida a la web!');
     } catch (err) {
-      console.error("❌ ERROR DETALLAT:", err.message);
-      bot.sendMessage(chatId, `❌ Error generant el resum: ${err.message}`);
+      console.error("❌ ERROR DETALLAT:", err);
+      bot.sendMessage(chatId, `❌ Error processant la notícia:\n${err.message}`);
     }
   } else {
     bot.sendMessage(chatId, "⚠️ No s'ha detectat cap URL al missatge.");
