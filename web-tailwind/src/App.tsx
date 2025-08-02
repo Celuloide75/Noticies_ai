@@ -3,7 +3,6 @@ import NoticiaCard from './components/NoticiaCard';
 
 function App() {
   const [noticies, setNoticies] = useState([]);
-  const adminMode = new URLSearchParams(window.location.search).get('admin') === '1234';
 
   useEffect(() => {
     fetch('/resums.json')
@@ -36,7 +35,6 @@ function App() {
           <NoticiaCard
             key={idx}
             noticia={noticia}
-            adminMode={adminMode}
             onDelete={handleDelete}
           />
         ))}

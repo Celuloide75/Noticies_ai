@@ -5,11 +5,10 @@ type NoticiaProps = {
     url: string;
     categories?: string[];
   };
-  adminMode: boolean;
   onDelete: (noticia: any) => void;
 };
 
-function NoticiaCard({ noticia, adminMode, onDelete }: NoticiaProps) {
+function NoticiaCard({ noticia, onDelete }: NoticiaProps) {
   return (
     <div className="border rounded-xl p-4 shadow">
       <h2 className="text-xl font-semibold mb-2">{noticia.titol}</h2>
@@ -26,14 +25,13 @@ function NoticiaCard({ noticia, adminMode, onDelete }: NoticiaProps) {
         Llegir notícia
       </a>
 
-      {adminMode && (
-        <button
-          className="mt-3 text-red-500 text-sm hover:underline"
-          onClick={() => onDelete(noticia)}
-        >
-          🗑️ Eliminar
-        </button>
-      )}
+      {/* 🔴 Botó sempre visible */}
+      <button
+        className="mt-3 text-red-500 text-sm hover:underline"
+        onClick={() => onDelete(noticia)}
+      >
+        🗑️ Eliminar
+      </button>
     </div>
   );
 }
