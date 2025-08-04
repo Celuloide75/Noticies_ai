@@ -1,26 +1,19 @@
-function NoticiaCard({ noticia, adminMode, onDelete }) {
+function NoticiaCard({ noticia, onDelete }) {
   return (
-    <div className="border rounded-xl p-4 shadow">
-      <h2 className="text-xl font-semibold mb-2">{noticia.titol}</h2>
-      <p className="text-sm text-gray-600 mb-2">{noticia.categories?.join(', ')}</p>
-      <p>{noticia.resum}</p>
-      <a
-        href={noticia.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="block mt-2 text-blue-600 underline text-sm"
-      >
-        Llegir original
+    <div className="border p-4 rounded-lg shadow mb-4">
+      <h2 className="text-xl font-semibold">{noticia.titol}</h2>
+      <p className="text-sm text-gray-500 mb-2">{noticia.categoria}</p>
+      <p className="mb-2">{noticia.resum}</p>
+      <a href={noticia.url} target="_blank" className="text-blue-500 underline">
+        Llegir més
       </a>
-
-      {adminMode && (
-        <button
-          className="mt-3 text-red-500 text-sm hover:underline"
-          onClick={() => onDelete(noticia)}
-        >
-          🗑️ Eliminar
-        </button>
-      )}
+      <br />
+      <button
+        onClick={() => onDelete(noticia)}
+        className="mt-2 text-sm text-red-600 hover:underline"
+      >
+        🗑️ Eliminar
+      </button>
     </div>
   );
 }
