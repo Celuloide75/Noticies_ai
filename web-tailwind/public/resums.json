@@ -1,20 +1,34 @@
 [
   {
+    "url": "https://www.mundodeportivo.com/futbol/fc-barcelona/20250803/1002509631/doble-susto-cierre-gira.html",
+    "titol": "Doble susto antes del cierre de la gira",
+    "resum": "Iñigo Martínez i Fermín López van abandonar l'entrenament del diumenge al Paju National Football Center, a Corea del Sud, on es preparava el FC Barcelona durant la gira asiàtica. Tot i que no van patir lesions greus, s'han perdut l'últim partit de la gira a Daegu. Iñigo va marxar abans de començar per fatiga muscular, i Fermín per un cop lleu al genoll. El cos tècnic ha decidit no forçar-los per evitar lesions majors. Després del partit contra Daegu, el Barça tornarà a Barcelona. Abans de l'entrenament, l'alcalde de Paju va visitar l'equip.",
+    "data": "2025-08-04T05:11:10.638Z"
+  },
+  {
     "titol": "IA genera música simfònica",
     "url": "https://www.ia-exemple.com/noticia",
     "resum": "Una nova IA permet generar música simfònica automàticament.",
-    "categories": ["IA", "Musica"]
+    "categories": [
+      "IA",
+      "Musica"
+    ]
   },
   {
     "titol": "Nova exposició al MACBA",
     "url": "https://www.macba.cat/exposicio",
     "resum": "El MACBA inaugura una exposició de pintura contemporània.",
-    "categories": ["Art", "Cultura"]
+    "categories": [
+      "Art",
+      "Cultura"
+    ]
   },
   {
     "titol": "Europa prova el 6G",
     "url": "https://www.tecnologia-avui.com",
     "resum": "Nova tecnologia 6G començarà a provar-se a Europa.",
-    "categories": ["Tecnologia"]
+    "categories": [
+      "Tecnologia"
+    ]
   }
 ]
