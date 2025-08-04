@@ -1,11 +1,13 @@
+type Noticia = {
+  titol: string;
+  resum: string;
+  url: string;
+  categories?: string[];
+};
+
 type NoticiaProps = {
-  noticia: {
-    titol: string;
-    resum: string;
-    url: string;
-    categories?: string[];
-  };
-  onDelete: (noticia: any) => void;
+  noticia: Noticia;
+  onDelete: (noticia: Noticia) => void;
 };
 
 function NoticiaCard({ noticia, onDelete }: NoticiaProps) {
