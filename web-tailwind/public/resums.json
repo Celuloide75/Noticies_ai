@@ -1,15 +1,18 @@
 [
   {
+    "titol": "IA genera música simfònica",
     "url": "https://www.ia-exemple.com/noticia",
     "resum": "Una nova IA permet generar música simfònica automàticament.",
     "categories": ["IA", "Musica"]
   },
   {
+    "titol": "Nova exposició al MACBA",
     "url": "https://www.macba.cat/exposicio",
     "resum": "El MACBA inaugura una exposició de pintura contemporània.",
     "categories": ["Art", "Cultura"]
   },
   {
+    "titol": "Europa prova el 6G",
     "url": "https://www.tecnologia-avui.com",
     "resum": "Nova tecnologia 6G començarà a provar-se a Europa.",
     "categories": ["Tecnologia"]
