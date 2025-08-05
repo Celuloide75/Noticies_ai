@@ -14,8 +14,18 @@ const NoticiaCard: React.FC<{ noticia: Noticia }> = ({ noticia }) => {
       <h2 className="text-xl font-bold mb-2 text-blue-900">{noticia.titol}</h2>
       <p className="text-sm text-gray-700 mb-3">{noticia.resum}</p>
 
+      {/* ✅ MOGUT cap aquí */}
+      <a
+        href={noticia.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-block mb-3 text-sm text-blue-600 hover:underline"
+      >
+        Llegir més
+      </a>
+
       {noticia.categories && noticia.categories.length > 0 && (
-        <div className="flex flex-wrap gap-2 mt-3">
+        <div className="flex flex-wrap gap-2">
           {noticia.categories.map((categoria, idx) => (
             <span
               key={idx}
@@ -26,15 +36,6 @@ const NoticiaCard: React.FC<{ noticia: Noticia }> = ({ noticia }) => {
           ))}
         </div>
       )}
-
-      <a
-        href={noticia.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-block mt-4 text-sm text-blue-600 hover:underline"
-      >
-        Llegir més
-      </a>
     </div>
   );
 };
