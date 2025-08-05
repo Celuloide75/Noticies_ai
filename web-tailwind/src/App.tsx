@@ -1,52 +1,52 @@
-import { useEffect, useState } from "react";
-import NoticiaCard from "./components/NoticiaCard";
-
-interface Noticia {
-  titol: string;
-  url: string;
-  resum: string;
-  categories: string[];
-}
+import React, { useState } from 'react';
+import NoticiaCard from './NoticiaCard';
+import resums from '../public/resums.json';
 
 function App() {
-  const [noticies, setNoticies] = useState<Noticia[]>([]);
-  const [filtre, setFiltre] = useState<string>("Totes");
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
-  useEffect(() => {
-    fetch("/resums.json")
-      .then((res) => res.json())
-      .then(setNoticies)
-      .catch((err) => console.error("Error carregant les notícies:", err));
-  }, []);
+  // Obtenir categories úniques de totes les notícies
+  const categoriesUnicas = Array.from(
+    new Set(resums.flatMap((n) => n.categories || []))
+  );
 
-  const categoriesDisponibles = Array.from(new Set(noticies.flatMap(n => n.categories)));
-
-  const noticiesFiltrades = filtre === "Totes"
-    ? noticies
-    : noticies.filter(n => n.categories.includes(filtre));
+  // Filtrar les notícies segons la categoria seleccionada
+  const noticiesFiltrades = selectedCategory
+    ? resums.filter((n) => n.categories?.includes(selectedCategory))
+    : resums;
 
   return (
-    <main className="max-w-3xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-6">Resums de notícies</h1>
-
-      <div className="mb-6">
-        <label className="block mb-2 text-sm font-medium text-gray-700">Filtra per categoria:</label>
-        <select
-          className="p-2 border rounded"
-          value={filtre}
-          onChange={(e) => setFiltre(e.target.value)}
+    <div className="p-4 max-w-4xl mx-auto">
+      {/* MENÚ DE CATEGORIES */}
+      <div className="flex overflow-x-auto gap-2 pb-4 mb-4 border-b border-gray-200">
+        <button
+          className={`px-4 py-2 rounded-full border text-sm ${
+            selectedCategory === null ? 'bg-black text-white' : 'bg-white text-black'
+          }`}
+          onClick={() => setSelectedCategory(null)}
         >
-          <option value="Totes">Totes</option>
-          {categoriesDisponibles.map((cat) => (
-            <option key={cat} value={cat}>{cat}</option>
-          ))}
-        </select>
+          Totes
+        </button>
+        {categoriesUnicas.map((cat) => (
+          <button
+            key={cat}
+            className={`px-4 py-2 rounded-full border text-sm whitespace-nowrap ${
+              selectedCategory === cat ? 'bg-black text-white' : 'bg-white text-black'
+            }`}
+            onClick={() => setSelectedCategory(cat)}
+          >
+            {cat}
+          </button>
+        ))}
       </div>
 
-      {noticiesFiltrades.map((n, i) => (
-        <NoticiaCard key={i} noticia={n} />
-      ))}
-    </main>
+      {/* LLISTAT DE NOTÍCIES */}
+      <div className="grid gap-6">
+        {noticiesFiltrades.map((noticia, index) => (
+          <NoticiaCard key={index} noticia={noticia} />
+        ))}
+      </div>
+    </div>
   );
 }
 

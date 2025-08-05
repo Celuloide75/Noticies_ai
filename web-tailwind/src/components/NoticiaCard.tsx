@@ -1,25 +1,42 @@
-interface Props {
-  noticia: {
-    titol: string;
-    resum: string;
-    url: string;
-    categories: string[];
-  };
+import React from 'react';
+
+interface Noticia {
+  titol: string;
+  resum: string;
+  url: string;
+  categories?: string[];
+  data: string;
 }
 
-const NoticiaCard = ({ noticia }: Props) => (
-  <div className="bg-white border border-gray-300 rounded p-4 mb-4 shadow">
-    <h2 className="text-xl font-semibold mb-2">{noticia.titol}</h2>
-    <p className="mb-2">{noticia.resum}</p>
-    <a
-      href={noticia.url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="text-blue-600 hover:underline"
-    >
-      🔗 Llegir 
-    </a>
-  </div>
-);
+const NoticiaCard: React.FC<{ noticia: Noticia }> = ({ noticia }) => {
+  return (
+    <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition">
+      <h2 className="text-xl font-bold mb-2 text-blue-900">{noticia.titol}</h2>
+      <p className="text-sm text-gray-700 mb-3">{noticia.resum}</p>
+
+      {noticia.categories && noticia.categories.length > 0 && (
+        <div className="flex flex-wrap gap-2 mt-3">
+          {noticia.categories.map((categoria, idx) => (
+            <span
+              key={idx}
+              className="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full shadow-sm"
+            >
+              {categoria}
+            </span>
+          ))}
+        </div>
+      )}
+
+      <a
+        href={noticia.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-block mt-4 text-sm text-blue-600 hover:underline"
+      >
+        Llegir més
+      </a>
+    </div>
+  );
+};
 
 export default NoticiaCard;
