@@ -1,21 +1,25 @@
-function NoticiaCard({ noticia, onDelete }) {
-  return (
-    <div className="border p-4 rounded-lg shadow mb-4">
-      <h2 className="text-xl font-semibold">{noticia.titol}</h2>
-      <p className="text-sm text-gray-500 mb-2">{noticia.categoria}</p>
-      <p className="mb-2">{noticia.resum}</p>
-      <a href={noticia.url} target="_blank" className="text-blue-500 underline">
-        Llegir més
-      </a>
-      <br />
-      <button
-        onClick={() => onDelete(noticia)}
-        className="mt-2 text-sm text-red-600 hover:underline"
-      >
-        🗑️ Eliminar
-      </button>
-    </div>
-  );
+interface Props {
+  noticia: {
+    titol: string;
+    resum: string;
+    url: string;
+    categories: string[];
+  };
 }
+
+const NoticiaCard = ({ noticia }: Props) => (
+  <div className="bg-white border border-gray-300 rounded p-4 mb-4 shadow">
+    <h2 className="text-xl font-semibold mb-2">{noticia.titol}</h2>
+    <p className="mb-2">{noticia.resum}</p>
+    <a
+      href={noticia.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-blue-600 hover:underline"
+    >
+      🔗 Llegir 
+    </a>
+  </div>
+);
 
 export default NoticiaCard;
