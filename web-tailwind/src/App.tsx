@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import NoticiaCard from './NoticiaCard';
+import NoticiaCard from './components/NoticiaCard';
 import resums from '../public/resums.json';
 
 function App() {
