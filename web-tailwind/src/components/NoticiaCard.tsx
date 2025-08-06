@@ -10,7 +10,7 @@ interface Noticia {
 
 const NoticiaCard: React.FC<{ noticia: Noticia }> = ({ noticia }) => {
   return (
-    <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition">
+    <div className="bg-gray-100 rounded-xl p-6 shadow-md hover:shadow-lg hover:scale-105 transition-transform duration-200">
       <h2 className="text-xl font-bold mb-2 text-blue-900 font-courier">
         {noticia.titol}
       </h2>
