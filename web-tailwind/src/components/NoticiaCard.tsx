@@ -25,7 +25,7 @@ const NoticiaCard: React.FC<{ noticia: Noticia }> = ({ noticia }) => {
         rel="noopener noreferrer"
         className="inline-block mb-3 text-sm text-blue-600 hover:underline font-courier"
       >
-        Llegir més
+        🚀​ link a la notícia
       </a>
 
       {noticia.categories && noticia.categories.length > 0 && (
