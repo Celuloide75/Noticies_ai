@@ -1,5 +1,12 @@
 [
   {
+    "url": "https://www.guitarristas.info/noticias/palau-guitar-day-jornada-clases-presenciales-guitarrista-profesional-david-palau/11180",
+    "titol": "Palau Guitar Day: una jornada de clases presenciales con el guitarrista profesional David Palau",
+    "resum": "",
+    "categories": [],
+    "data": "2025-08-07T10:14:06.176Z"
+  },
+  {
     "url": "https://www.ara.cat/cultura/patrimoni/sixena-arago-prado-pintura-sortir-monestir-il-legalment_1_5465171.html",
     "titol": "La teoria del perit de Sixena que volia reclamar una pintura del Prado fa aigües",
     "resum": "🎨 Reclamació del retaule - El govern d'Aragó vol reclamar una pintura del retaule major del monestir de Sixena presentada al Museu del Prado.",
@@ -9,61 +16,79 @@
     ],
     "data": "2025-08-07T06:21:35.079Z"
   },
-  
   {
     "url": "https://substack.com/app-link/post?publication_id=993166&post_id=168163353&utm_source=post-email-title&utm_campaign=email-post-title&isFreemail=true&r=1ouu81&token=eyJ1c2VyX2lkIjoxMDIyMTU4MDksInBvc3RfaWQiOjE2ODE2MzM1MywiaWF0IjoxNzU0NTAyNjgyLCJleHAiOjE3NTcwOTQ2ODIsImlzcyI6InB1Yi05OTMxNjYiLCJzdWIiOiJwb3N0LXJlYWN0aW9uIn0.aYK6IuS02k_O2lC_pDQQzzzCXaHAv5_r50IbldmlN-Y",
     "titol": "Cursos de IA Gratis (Super-Lista)",
     "resum": "",
-    "categories": ["IA", "Tecnologia"],
+    "categories": [
+      "IA",
+      "Tecnologia"
+    ],
     "data": "2025-08-07T04:21:33.200Z"
   },
   {
     "url": "https://www.linkedin.com/posts/martafernandezgarcia-ia_llevo-construyendo-soluciones-con-agentes-activity-7358393076681261056-fD8S",
     "titol": "Llevo construyendo soluciones con agentes de IA prácticamente desde el primer momento, cuando la librería de LangChain todavía no se consideraba estable.",
     "resum": "",
-    "categories": ["IA", "Tecnologia"],
+    "categories": [
+      "IA",
+      "Tecnologia"
+    ],
     "data": "2025-08-07T04:04:02.909Z"
   },
   {
     "url": "https://substack.com/app-link/post?publication_id=993166&post_id=168163353&utm_source=post-email-title&utm_campaign=email-post-title&isFreemail=true&r=1ouu81&token=eyJ1c2VyX2lkIjoxMDIyMTU4MDksInBvc3RfaWQiOjE2ODE2MzM1MywiaWF0IjoxNzU0NTAyNjgyLCJleHAiOjE3NTcwOTQ2ODIsImlzcyI6InB1Yi05OTMxNjYiLCJzdWIiOiJwb3N0LXJlYWN0aW9uIn0.aYK6IuS02k_O2lC_pDQQzzzCXaHAv5_r50IbldmlN-Y",
     "titol": "Cursos de IA Gratis (Super-Lista)",
     "resum": "",
-    "categories": ["IA", "Tecnologia"],
+    "categories": [
+      "IA",
+      "Tecnologia"
+    ],
     "data": "2025-08-07T04:03:04.616Z"
   },
   {
     "url": "https://www.leccionesdeviaje.com",
     "titol": "Lecciones de Viaje, Que hacer en Paris, Europa y el mundo",
     "resum": "✈️ Tito i Diana són una parella que viu a França i ofereixen ajuda per organitzar viatges a París i altres llocs del món.",
-    "categories": ["Florència"],
+    "categories": [
+      "Florència"
+    ],
     "data": "2025-08-06T12:06:50.761Z"
   },
   {
     "url": "https://www.mochileandoporelmundo.com",
     "titol": "Mochileando por el Mundo | Blog de viajes alrededor del mundo",
     "resum": "",
-    "categories": ["Florència"],
+    "categories": [
+      "Florència"
+    ],
     "data": "2025-08-06T12:06:23.649Z"
   },
   {
     "url": "https://www.mochileandoporelmundo.com/restaurantes-donde-comer-barato-en-florencia/#Donde_comer_en_Florencia_restaurantes_recomendados",
     "titol": "10 restaurantes donde comer en Florencia (bien y barato) - Mochileando por el Mundo",
     "resum": "",
-    "categories": ["Florència"],
+    "categories": [
+      "Florència"
+    ],
     "data": "2025-08-06T12:05:52.506Z"
   },
   {
     "url": "https://www.mochileandoporelmundo.com/restaurantes-donde-comer-barato-en-florencia/#Donde_comer_en_Florencia_restaurantes_recomendados",
     "titol": "10 restaurantes donde comer en Florencia (bien y barato) - Mochileando por el Mundo",
     "resum": "Resum breu en forma de llista:",
-    "categories": ["Florència"],
+    "categories": [
+      "Florència"
+    ],
     "data": "2025-08-06T12:05:22.281Z"
   },
   {
     "url": "https://cometeelmundo.net/donde-comer-en-florencia",
     "titol": "Dónde comer en Florencia (como un florentino más) | Cómete el Mundo",
     "resum": "",
-    "categories": ["Florència"],
+    "categories": [
+      "Florència"
+    ],
     "data": "2025-08-06T12:04:51.768Z"
   }
 ]
